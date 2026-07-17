@@ -24,7 +24,7 @@ const ResumeDashboard = () => {
         formData.append('resume', file);
         formData.append('jobDescription', jobDescription);
 
-        const response = await fetch('http://localhost:5000/api/analyze', {
+        const response = await fetch('https://talentmatrix-ai.onrender.com/api/analyze', {
             method: 'POST',
             body: formData,
         });
