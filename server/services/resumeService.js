@@ -50,13 +50,14 @@ export const processAndSaveResume = async (file, jobDescription) => {
         // 2. Controlled Gemini Execution
         if (process.env.GEMINI_API_KEY) {
             const model = genAI.getGenerativeModel({ 
-                model: 'gemma-4-26b-a4b-it'
+                model: 'gemini-2.0-flash-lite'
             });
 
             const prompt = `
                 Analyze the following resume text against the provided Job Description.
                 Extract the candidate's details and perform an ATS match analysis.
                 Return ONLY the raw JSON object. Do not include markdown wraps like \`\`\`json.
+                CRITICAL: For maximum speed, keep all text fields extremely short (max 1 sentence).
                 
                 Expected format:
                 {
@@ -67,14 +68,14 @@ export const processAndSaveResume = async (file, jobDescription) => {
                     "education": "Degree details",
                     "aiAnalysis": {
                         "score": 85,
-                        "summary": "Short technical description of the match",
-                        "missing": ["Required skill missing", "Another missing skill"],
-                        "strengths": ["Matched skill", "Strong experience"],
-                        "feedback": "Detailed feedback on what to improve for this role.",
+                        "summary": "1 sentence max match summary",
+                        "missing": ["Missing skill 1", "Missing skill 2"],
+                        "strengths": ["Matched skill 1", "Matched skill 2"],
+                        "feedback": "1 sentence max actionable feedback.",
                         "placementMilestones": {
-                            "month1": "Actions for month 1",
-                            "month2": "Actions for month 2",
-                            "month3": "Actions for month 3"
+                            "month1": "1 short action",
+                            "month2": "1 short action",
+                            "month3": "1 short action"
                         }
                     }
                 }
