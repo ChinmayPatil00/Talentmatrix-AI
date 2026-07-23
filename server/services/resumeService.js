@@ -50,7 +50,7 @@ export const processAndSaveResume = async (file, jobDescription) => {
         // 2. Controlled Gemini Execution
         if (process.env.GEMINI_API_KEY) {
             const model = genAI.getGenerativeModel({ 
-                model: 'gemini-2.0-flash-lite'
+                model: 'gemma-4-26b-a4b-it'
             });
 
             const prompt = `
