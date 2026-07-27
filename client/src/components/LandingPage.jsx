@@ -43,10 +43,7 @@ const LandingPage = () => {
             variants={containerVariants}
             className="text-center max-w-4xl mx-auto"
           >
-            <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 px-4 py-2 rounded-full mb-8 font-medium text-sm shadow-[0_0_15px_rgba(99,102,241,0.2)]">
-              <Bot className="w-4 h-4" />
-              <span>Powered by Google Gemini AI</span>
-            </motion.div>
+
             
             <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-8 leading-tight drop-shadow-sm">
               The Next Generation <br/>
@@ -99,7 +96,7 @@ const LandingPage = () => {
               <Zap className="w-7 h-7" />
             </div>
             <h3 className="text-xl font-bold text-white mb-3">Lightning Fast</h3>
-            <p className="text-slate-400">Powered by Google's Gemini models, get deep analytical insights in milliseconds, not minutes.</p>
+            <p className="text-slate-400">Get deep analytical insights in milliseconds, not minutes.</p>
           </motion.div>
 
           {/* Feature 2 */}
