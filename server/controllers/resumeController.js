@@ -1,5 +1,6 @@
 // controllers/resumeController.js
 import * as resumeService from '../services/resumeService.js';
+import * as resumeRepository from '../repositories/resumeRepository.js';
 
 export const uploadResume = async (req, res) => {
     try {
