@@ -35,10 +35,7 @@ const LandingPage = () => {
       
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        {/* Ambient background glows */}
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-600/20 blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/20 blur-[120px] pointer-events-none" />
-        
+        {/* Removed ambient glows to match SaaS aesthetic */}  
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 relative z-10">
           <motion.div 
             initial="hidden"
