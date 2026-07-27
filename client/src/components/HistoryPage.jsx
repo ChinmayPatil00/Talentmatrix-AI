@@ -32,7 +32,7 @@ const HistoryPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-7xl mx-auto p-6 pt-28 min-h-screen"
+      className="max-w-7xl mx-auto p-6 pt-8 min-h-screen"
     >
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-10">
         <div className="mb-6 md:mb-0">
@@ -96,10 +96,10 @@ const HistoryPage = () => {
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="font-bold text-lg text-white mb-1 truncate max-w-[200px]" title={candidate.candidateName}>
+                      <h3 className="font-bold text-lg text-white mb-1 truncate max-w-[200px] blur-sm select-none transition-all hover:blur-none" title={candidate.candidateName}>
                         {candidate.candidateName}
                       </h3>
-                      <p className="text-sm text-slate-400 truncate max-w-[200px]" title={candidate.email}>
+                      <p className="text-sm text-slate-400 truncate max-w-[200px] blur-sm select-none transition-all hover:blur-none" title={candidate.email}>
                         {candidate.email}
                       </p>
                     </div>

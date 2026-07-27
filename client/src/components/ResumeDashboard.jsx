@@ -57,7 +57,7 @@ const ResumeDashboard = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.5 }}
-      className="max-w-7xl mx-auto p-6 pt-28"
+      className="max-w-7xl mx-auto p-6 pt-8"
     >
         <div className="mb-10 text-center">
           <h1 className="text-5xl font-black text-white tracking-tight mb-4 drop-shadow-sm">Resume Optimizer <span className="text-indigo-500">Pro</span></h1>

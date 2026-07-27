@@ -50,13 +50,16 @@ export const processAndSaveResume = async (file, jobDescription) => {
         // 2. Controlled Gemini Execution
         if (process.env.GEMINI_API_KEY) {
             const model = genAI.getGenerativeModel({ 
-                model: 'gemma-4-26b-a4b-it'
+                model: 'gemini-1.5-flash-8b',
+                generationConfig: {
+                    responseMimeType: "application/json"
+                }
             });
 
             const prompt = `
                 Analyze the following resume text against the provided Job Description.
                 Extract the candidate's details and perform an ATS match analysis.
-                Return ONLY the raw JSON object. Do not include markdown wraps like \`\`\`json.
+                You must return a valid JSON object matching the requested schema.
                 
                 Expected format:
                 {

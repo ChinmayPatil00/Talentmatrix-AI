@@ -11,12 +11,10 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-      <nav className="bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 pointer-events-auto shadow-2xl shadow-black/50 transition-all">
-        <div className="flex items-center space-x-12">
-          
-          {/* Logo Section */}
-          <Link to="/" className="flex items-center space-x-3 group">
+    <div className="sticky top-0 z-50 w-full px-4 py-4 bg-slate-950/80 backdrop-blur-xl border-b border-white/5 flex justify-center">
+      <nav className="w-full max-w-7xl mx-auto flex items-center justify-between">
+        {/* Logo Section */}
+        <Link to="/" className="flex items-center space-x-3 group">
             <div className="p-2 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl shadow-lg shadow-indigo-500/30 group-hover:shadow-indigo-500/50 transition-all">
               <Briefcase className="w-5 h-5 text-white" />
             </div>
@@ -51,8 +49,6 @@ const Navbar = () => {
               );
             })}
           </div>
-
-        </div>
       </nav>
     </div>
   );
