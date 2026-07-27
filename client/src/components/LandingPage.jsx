@@ -30,13 +30,13 @@ const LandingPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-slate-950 pt-20"
+      className="bg-slate-950 pt-4"
     >
       
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         {/* Removed ambient glows to match SaaS aesthetic */}  
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 relative z-10">
           <motion.div 
             initial="hidden"
             animate="visible"
