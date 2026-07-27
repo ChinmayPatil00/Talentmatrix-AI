@@ -26,41 +26,48 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen bg-slate-950 pt-20"
+    >
       
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 opacity-50" />
+      <div className="relative overflow-hidden">
+        {/* Ambient background glows */}
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-600/20 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/20 blur-[120px] pointer-events-none" />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 relative z-10">
           <motion.div 
             initial="hidden"
             animate="visible"
             variants={containerVariants}
             className="text-center max-w-4xl mx-auto"
           >
-            <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full mb-8 font-medium text-sm">
+            <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 px-4 py-2 rounded-full mb-8 font-medium text-sm shadow-[0_0_15px_rgba(99,102,241,0.2)]">
               <Bot className="w-4 h-4" />
-              <span>Powered by Google Gemini 2.0 AI</span>
+              <span>Powered by Google Gemini AI</span>
             </motion.div>
             
-            <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold tracking-tight text-gray-900 mb-8 leading-tight">
+            <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-8 leading-tight drop-shadow-sm">
               The Next Generation <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 filter drop-shadow-[0_0_20px_rgba(99,102,241,0.4)]">
                 AI Resume Analyzer
               </span>
             </motion.h1>
             
-            <motion.p variants={itemVariants} className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <motion.p variants={itemVariants} className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
               Instantly score resumes against job descriptions, uncover hidden skill gaps, and generate personalized 90-day placement roadmaps in milliseconds.
             </motion.p>
             
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center gap-4">
               <Link to="/analyze">
                 <motion.button 
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(99,102,241,0.5)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold text-lg shadow-lg shadow-blue-500/30 flex items-center justify-center space-x-2"
+                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-indigo-500 to-blue-600 text-white rounded-xl font-bold text-lg shadow-lg flex items-center justify-center space-x-2 transition-shadow"
                 >
                   <span>Start Scanning</span>
                   <ArrowRight className="w-5 h-5" />
@@ -70,7 +77,7 @@ const LandingPage = () => {
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-xl font-bold text-lg shadow-sm flex items-center justify-center space-x-2 hover:bg-gray-50"
+                  className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md text-white border border-white/10 rounded-xl font-bold text-lg flex items-center justify-center space-x-2 hover:bg-white/10 transition-colors"
                 >
                   <span>View History</span>
                 </motion.button>
@@ -81,7 +88,7 @@ const LandingPage = () => {
       </div>
 
       {/* Features Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -90,35 +97,35 @@ const LandingPage = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {/* Feature 1 */}
-          <motion.div variants={itemVariants} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6">
-              <Zap className="w-6 h-6" />
+          <motion.div variants={itemVariants} whileHover={{ y: -5 }} className="bg-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/10 hover:border-indigo-500/50 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] transition-all group">
+            <div className="w-14 h-14 bg-blue-500/20 border border-blue-500/30 text-blue-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <Zap className="w-7 h-7" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Lightning Fast</h3>
-            <p className="text-gray-600">Powered by Gemini 2.0 Flash Lite, get deep analytical insights in milliseconds, not minutes.</p>
+            <h3 className="text-xl font-bold text-white mb-3">Lightning Fast</h3>
+            <p className="text-slate-400">Powered by Google's Gemini models, get deep analytical insights in milliseconds, not minutes.</p>
           </motion.div>
 
           {/* Feature 2 */}
-          <motion.div variants={itemVariants} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-6">
-              <Target className="w-6 h-6" />
+          <motion.div variants={itemVariants} whileHover={{ y: -5 }} className="bg-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/10 hover:border-emerald-500/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] transition-all group">
+            <div className="w-14 h-14 bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <Target className="w-7 h-7" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">ATS Precision Match</h3>
-            <p className="text-gray-600">Cross-reference candidate skills directly against your job descriptions to uncover exact match percentages.</p>
+            <h3 className="text-xl font-bold text-white mb-3">ATS Precision Match</h3>
+            <p className="text-slate-400">Cross-reference candidate skills directly against your job descriptions to uncover exact match percentages.</p>
           </motion.div>
 
           {/* Feature 3 */}
-          <motion.div variants={itemVariants} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-6">
-              <LineChart className="w-6 h-6" />
+          <motion.div variants={itemVariants} whileHover={{ y: -5 }} className="bg-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/10 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition-all group">
+            <div className="w-14 h-14 bg-purple-500/20 border border-purple-500/30 text-purple-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <LineChart className="w-7 h-7" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Actionable Roadmaps</h3>
-            <p className="text-gray-600">Automatically generate month-by-month upskilling plans to get candidates placement-ready.</p>
+            <h3 className="text-xl font-bold text-white mb-3">Actionable Roadmaps</h3>
+            <p className="text-slate-400">Automatically generate month-by-month upskilling plans to get candidates placement-ready.</p>
           </motion.div>
         </motion.div>
       </div>
 
-    </div>
+    </motion.div>
   );
 };
 

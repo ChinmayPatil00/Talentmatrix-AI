@@ -11,43 +11,40 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <nav className="bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 pointer-events-auto shadow-2xl shadow-black/50 transition-all">
+        <div className="flex items-center space-x-12">
           
           {/* Logo Section */}
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="p-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl">
-                <Briefcase className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-800">
-                TalentMatrix AI
-              </span>
-            </Link>
-          </div>
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="p-2 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl shadow-lg shadow-indigo-500/30 group-hover:shadow-indigo-500/50 transition-all">
+              <Briefcase className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xl font-black tracking-tight text-white group-hover:text-indigo-300 transition-colors">
+              TalentMatrix
+            </span>
+          </Link>
 
           {/* Nav Links */}
-          <div className="flex items-center space-x-8">
+          <div className="flex items-center space-x-2">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="relative group flex items-center space-x-1"
+                  className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                    isActive ? 'text-white bg-white/10' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  }`}
                 >
-                  <span className={`text-sm font-medium transition-colors ${isActive ? 'text-blue-600' : 'text-gray-600 group-hover:text-blue-600'}`}>
-                    <div className="flex items-center space-x-2">
-                      {link.icon}
-                      <span>{link.name}</span>
-                    </div>
-                  </span>
+                  {link.icon}
+                  <span className="text-sm font-semibold">{link.name}</span>
                   
                   {isActive && (
                     <motion.div
-                      layoutId="underline"
-                      className="absolute -bottom-5 left-0 right-0 h-1 bg-blue-600 rounded-t-full"
+                      layoutId="nav_pill"
+                      className="absolute inset-0 rounded-full border border-white/20"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
                 </Link>
@@ -56,8 +53,8 @@ const Navbar = () => {
           </div>
 
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 

@@ -52,20 +52,13 @@ const ResumeDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 font-sans text-slate-100 selection:bg-indigo-500/30">
-      {/* Premium Gradient Background Elements */}
-      <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-indigo-600/20 blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600/20 blur-[120px]"></div>
-      </div>
-
-      {/* Main Content Area */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-7xl mx-auto p-6 mt-8"
-      >
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-7xl mx-auto p-6 pt-28"
+    >
         <div className="mb-10 text-center">
           <h1 className="text-5xl font-black text-white tracking-tight mb-4 drop-shadow-sm">Resume Optimizer <span className="text-indigo-500">Pro</span></h1>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">Analyze your resume against any job description using advanced AI to generate a custom placement roadmap and maximize your ATS score.</p>
@@ -267,7 +260,6 @@ const ResumeDashboard = () => {
           </div>
         </div>
       </motion.div>
-    </div>
   );
 };
 

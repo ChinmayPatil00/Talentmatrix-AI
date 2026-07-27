@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Users, Search, Clock, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Users, Search, Clock, Calendar } from 'lucide-react';
 import axios from 'axios';
 
 const HistoryPage = () => {
@@ -11,7 +11,7 @@ const HistoryPage = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/candidates');
+        const response = await axios.get('https://talentmatrix-ai.onrender.com/api/candidates');
         setCandidates(response.data.data);
       } catch (error) {
         console.error("Error fetching history:", error);
@@ -27,120 +27,122 @@ const HistoryPage = () => {
     c.email?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1 }
-  };
-
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3">
-            <Users className="w-8 h-8 text-blue-600" />
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="max-w-7xl mx-auto p-6 pt-28 min-h-screen"
+    >
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-10">
+        <div className="mb-6 md:mb-0">
+          <h1 className="text-4xl font-black text-white tracking-tight mb-2 flex items-center space-x-3">
+            <Users className="w-8 h-8 text-indigo-500" />
             <span>Candidate History</span>
           </h1>
-          <p className="mt-2 text-gray-600">Review past scans, scores, and missing skills instantly.</p>
+          <p className="text-slate-400">Review past ATS analyses and placement roadmaps.</p>
         </div>
-        
-        {/* Search */}
-        <div className="mt-4 md:mt-0 relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
-          </div>
+        <div className="relative w-full md:w-72">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
           <input
             type="text"
-            className="block w-full md:w-80 pl-10 pr-3 py-2 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all"
             placeholder="Search candidates..."
+            className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-white placeholder:text-slate-500 shadow-[0_0_15px_rgba(0,0,0,0.5)]"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
       </div>
 
-      {/* Content */}
       {loading ? (
         <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
         </div>
       ) : filteredCandidates.length === 0 ? (
-        <div className="text-center py-24 bg-white rounded-2xl border border-gray-200">
-          <Users className="mx-auto h-12 w-12 text-gray-400" />
-          <h3 className="mt-4 text-lg font-medium text-gray-900">No candidates found</h3>
-          <p className="mt-2 text-gray-500">Scan a resume to see it appear in your history.</p>
-        </div>
-      ) : (
         <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center py-20 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl"
         >
-          {filteredCandidates.map((candidate) => (
-            <motion.div 
-              key={candidate._id} 
-              variants={itemVariants}
-              whileHover={{ y: -5 }}
-              className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all relative overflow-hidden group"
-            >
-              <div className="absolute top-0 right-0 p-4">
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${
-                  candidate.aiAnalysis?.score >= 80 ? 'bg-green-100 text-green-700' :
-                  candidate.aiAnalysis?.score >= 60 ? 'bg-yellow-100 text-yellow-700' :
-                  'bg-red-100 text-red-700'
-                }`}>
-                  {candidate.aiAnalysis?.score || 0}
-                </div>
-              </div>
-              
-              <h3 className="text-xl font-bold text-gray-900 mb-1 pr-16 truncate">
-                {candidate.candidateName}
-              </h3>
-              <p className="text-sm text-gray-500 mb-4">{candidate.email}</p>
-              
-              <div className="space-y-4">
-                <div>
-                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Missing Skills</p>
-                  <div className="flex flex-wrap gap-2">
-                    {candidate.aiAnalysis?.missing?.slice(0, 3).map((skill, i) => (
-                      <span key={i} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-50 text-red-700 border border-red-100">
-                        {skill}
-                      </span>
-                    ))}
-                    {candidate.aiAnalysis?.missing?.length > 3 && (
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
-                        +{candidate.aiAnalysis.missing.length - 3} more
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-sm text-gray-500">
-                <div className="flex items-center space-x-1">
-                  <Clock className="w-4 h-4" />
-                  <span>{new Date(candidate.createdAt).toLocaleDateString()}</span>
-                </div>
-                <button className="text-blue-600 font-medium flex items-center space-x-1 group-hover:text-blue-700">
-                  <span>View Details</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </motion.div>
-          ))}
+          <Users className="w-12 h-12 text-slate-500 mx-auto mb-4" />
+          <p className="text-slate-400 text-lg">No candidates found matching your criteria.</p>
         </motion.div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence>
+            {filteredCandidates.map((candidate, idx) => {
+              const score = candidate.aiAnalysis?.score || 0;
+              const isHighScore = score >= 75;
+              const isMedScore = score >= 50 && score < 75;
+              
+              let ringColor = 'border-white/10 hover:border-red-500/50 hover:shadow-[0_0_20px_rgba(239,68,68,0.2)]';
+              let scoreColor = 'text-red-400';
+              if (isHighScore) {
+                ringColor = 'border-white/10 hover:border-emerald-500/50 hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]';
+                scoreColor = 'text-emerald-400';
+              } else if (isMedScore) {
+                ringColor = 'border-white/10 hover:border-amber-500/50 hover:shadow-[0_0_20px_rgba(245,158,11,0.2)]';
+                scoreColor = 'text-amber-400';
+              }
+
+              return (
+                <motion.div
+                  key={candidate._id || idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ delay: idx * 0.05 }}
+                  className={`bg-white/5 backdrop-blur-xl p-6 rounded-2xl border transition-all flex flex-col h-full ${ringColor}`}
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="font-bold text-lg text-white mb-1 truncate max-w-[200px]" title={candidate.candidateName}>
+                        {candidate.candidateName}
+                      </h3>
+                      <p className="text-sm text-slate-400 truncate max-w-[200px]" title={candidate.email}>
+                        {candidate.email}
+                      </p>
+                    </div>
+                    <div className={`text-2xl font-black ${scoreColor} bg-white/5 px-3 py-1 rounded-xl border border-white/5`}>
+                      {score}
+                    </div>
+                  </div>
+
+                  <div className="mb-4 flex-1">
+                    <p className="text-sm text-slate-300 line-clamp-3 leading-relaxed">
+                      {candidate.aiAnalysis?.summary || "No summary available."}
+                    </p>
+                  </div>
+
+                  {candidate.aiAnalysis?.missing?.length > 0 && (
+                    <div className="mb-5">
+                      <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-2">Missing Skills</span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {candidate.aiAnalysis.missing.slice(0, 3).map((skill, i) => (
+                          <span key={i} className="text-xs bg-red-500/10 text-red-300 border border-red-500/20 px-2.5 py-1 rounded-md">
+                            {skill}
+                          </span>
+                        ))}
+                        {candidate.aiAnalysis.missing.length > 3 && (
+                          <span className="text-xs bg-white/5 text-slate-400 border border-white/10 px-2.5 py-1 rounded-md">
+                            +{candidate.aiAnalysis.missing.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="text-xs text-slate-500 flex items-center gap-1 mt-auto pt-4 border-t border-white/10">
+                    <Calendar className="w-3.5 h-3.5" />
+                    {new Date(candidate.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
