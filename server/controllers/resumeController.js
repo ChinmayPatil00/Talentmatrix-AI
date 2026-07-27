@@ -32,3 +32,19 @@ export const uploadResume = async (req, res) => {
         });
     }
 };
+
+export const getAllCandidates = async (req, res) => {
+    try {
+        const candidates = await resumeRepository.getAllResumes();
+        return res.status(200).json({
+            success: true,
+            data: candidates
+        });
+    } catch (error) {
+        console.error("❌ Controller caught an error fetching candidates:", error.message);
+        return res.status(500).json({ 
+            success: false, 
+            error: error.message 
+        });
+    }
+};

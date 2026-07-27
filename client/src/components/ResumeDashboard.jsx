@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 const ResumeDashboard = () => {
   const [file, setFile] = useState(null);
@@ -58,27 +59,13 @@ const ResumeDashboard = () => {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600/20 blur-[120px]"></div>
       </div>
 
-      {/* Top Nav */}
-      <nav className="border-b border-white/10 bg-black/40 backdrop-blur-md p-4 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="font-extrabold text-2xl tracking-tight flex items-center gap-3">
-            <div className="bg-gradient-to-br from-indigo-500 to-blue-600 text-white p-2 rounded-xl shadow-lg shadow-indigo-500/30 flex items-center justify-center">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            </div>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">TalentMatrix AI</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-            </span>
-            <span className="text-sm font-medium text-emerald-400">System Online</span>
-          </div>
-        </div>
-      </nav>
-
       {/* Main Content Area */}
-      <div className="max-w-7xl mx-auto p-6 mt-8">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-7xl mx-auto p-6 mt-8"
+      >
         <div className="mb-10 text-center">
           <h1 className="text-5xl font-black text-white tracking-tight mb-4 drop-shadow-sm">Resume Optimizer <span className="text-indigo-500">Pro</span></h1>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">Analyze your resume against any job description using advanced AI to generate a custom placement roadmap and maximize your ATS score.</p>
@@ -279,7 +266,7 @@ const ResumeDashboard = () => {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -9,3 +9,11 @@ export const saveResumeAnalysis = async (resumeData) => {
         throw new Error(`Repository Error: Failed to save record - ${error.message}`);
     }
 };
+
+export const getAllResumes = async () => {
+    try {
+        return await Resume.find().sort({ createdAt: -1 });
+    } catch (error) {
+        throw new Error(`Repository Error: Failed to fetch records - ${error.message}`);
+    }
+};

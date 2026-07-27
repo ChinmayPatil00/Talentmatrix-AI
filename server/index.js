@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import multer from 'multer';
-import { uploadResume } from './controllers/resumeController.js';
+import { uploadResume, getAllCandidates } from './controllers/resumeController.js';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -32,6 +32,7 @@ connectDB();
 // Routes
 // We use 'resume' as the field name in the form-data request
 app.post('/api/analyze', upload.single('resume'), uploadResume);
+app.get('/api/candidates', getAllCandidates);
 
 // Basic Health Check Route
 app.get('/', (req, res) => res.send('TalentMatrix API is running...'));
