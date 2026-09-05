@@ -19,11 +19,22 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 // Database Connection
 const connectDB = async () => {
+    const primaryUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/talentmatrix';
     try {
-        await mongoose.connect(process.env.MONGO_URI);
-        console.log('✅ Connected to MongoDB Atlas');
+        await mongoose.connect(primaryUri);
+        console.log(`✅ Connected to MongoDB (${primaryUri.includes('mongodb.net') ? 'Atlas' : 'Local'})`);
     } catch (error) {
-        console.error('❌ MongoDB Connection Error:', error.message);
+        console.warn('⚠️ Primary MongoDB Connection Error:', error.message);
+        if (primaryUri !== 'mongodb://127.0.0.1:27017/talentmatrix') {
+            console.log('🔄 Attempting fallback to local MongoDB (mongodb://127.0.0.1:27017/talentmatrix)...');
+            try {
+                await mongoose.connect('mongodb://127.0.0.1:27017/talentmatrix');
+                console.log('✅ Connected to local MongoDB fallback');
+                return;
+            } catch (fallbackError) {
+                console.error('❌ Local MongoDB Fallback Error:', fallbackError.message);
+            }
+        }
         process.exit(1); // Stop the app if DB connection fails
     }
 };

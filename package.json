@@ -1,0 +1,11 @@
+﻿{
+  "name": "talentmatrix-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TalentMatrix AI - Full Stack Enterprise Resume Analyzer SaaS",
+  "scripts": {
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "seed": "node server/seed_history.js"
+  }
+}

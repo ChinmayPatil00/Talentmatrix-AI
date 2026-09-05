@@ -74,8 +74,15 @@ const mockCandidates = [
 
 async function seed() {
     try {
-        await mongoose.connect(MONGO_URI);
-        console.log("Connected to MongoDB.");
+        const uri = MONGO_URI || 'mongodb://127.0.0.1:27017/talentmatrix';
+        try {
+            await mongoose.connect(uri);
+            console.log("Connected to MongoDB:", uri.includes('mongodb.net') ? 'Atlas' : 'Local');
+        } catch (err) {
+            console.warn("Primary MongoDB connection failed, falling back to local:", err.message);
+            await mongoose.connect('mongodb://127.0.0.1:27017/talentmatrix');
+            console.log("Connected to local MongoDB.");
+        }
         
         // Delete candidates that have "Bypassed or analytical parser error."
         const result = await ResumeAnalysis.deleteMany({

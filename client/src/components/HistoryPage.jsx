@@ -11,7 +11,8 @@ const HistoryPage = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const response = await axios.get('https://talentmatrix-ai.onrender.com/api/candidates');
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const response = await axios.get(`${API_URL}/api/candidates`);
         setCandidates(response.data.data);
       } catch (error) {
         console.error("Error fetching history:", error);
