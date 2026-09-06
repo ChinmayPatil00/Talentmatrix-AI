@@ -45,14 +45,14 @@ const LandingPage = () => {
           >
 
             
-            <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-8 leading-tight drop-shadow-sm">
+            <motion.h1 variants={itemVariants} className="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 sm:mb-8 leading-tight drop-shadow-sm">
               The Next Generation <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 filter drop-shadow-[0_0_20px_rgba(99,102,241,0.4)]">
                 AI Resume Analyzer
               </span>
             </motion.h1>
             
-            <motion.p variants={itemVariants} className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <motion.p variants={itemVariants} className="text-base sm:text-xl text-slate-400 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
               Instantly score resumes against job descriptions, uncover hidden skill gaps, and generate personalized 90-day placement roadmaps in milliseconds.
             </motion.p>
             

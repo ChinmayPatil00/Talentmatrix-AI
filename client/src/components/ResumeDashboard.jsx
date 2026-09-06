@@ -58,11 +58,11 @@ const ResumeDashboard = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.5 }}
-      className="max-w-7xl mx-auto p-6 pt-8"
+      className="max-w-7xl mx-auto p-4 sm:p-6 pt-6 sm:pt-8"
     >
-        <div className="mb-10 text-center">
-          <h1 className="text-5xl font-black text-white tracking-tight mb-4 drop-shadow-sm">Resume Optimizer <span className="text-indigo-500">Pro</span></h1>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">Analyze your resume against any job description using advanced AI to generate a custom placement roadmap and maximize your ATS score.</p>
+        <div className="mb-8 sm:mb-10 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-3 sm:mb-4 drop-shadow-sm">Resume Optimizer <span className="text-indigo-500">Pro</span></h1>
+          <p className="text-slate-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">Analyze your resume against any job description using advanced AI to generate a custom placement roadmap and maximize your ATS score.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -145,19 +145,19 @@ const ResumeDashboard = () => {
             )}
 
             {analysis && (
-              <div className="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-xl shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="bg-white/5 p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-white/10 backdrop-blur-xl shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-500">
                 
                 {/* Header Profile & Score */}
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 pb-8 border-b border-white/10 gap-6">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 sm:mb-10 pb-6 sm:pb-8 border-b border-white/10 gap-6">
                   <div>
-                    <h2 className="text-3xl font-black text-white">{analysis.candidateName || "Candidate"}</h2>
-                    <p className="text-slate-400 mt-1 flex items-center gap-2">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <h2 className="text-2xl sm:text-3xl font-black text-white break-words">{analysis.candidateName || "Candidate"}</h2>
+                    <p className="text-slate-400 mt-1 flex items-center gap-2 text-sm sm:text-base break-all">
+                        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         {analysis.email || "No email detected"}
                     </p>
                   </div>
                   
-                  <div className="flex items-center gap-4 bg-black/30 p-4 rounded-2xl border border-white/5">
+                  <div className="flex items-center justify-between sm:justify-start gap-4 bg-black/30 p-4 rounded-2xl border border-white/5 w-full sm:w-auto">
                     <div className="text-right">
                         <div className="text-sm text-slate-400 font-medium uppercase tracking-wider">ATS Match Score</div>
                         <div className="text-xs text-slate-500">Based on JD keywords</div>

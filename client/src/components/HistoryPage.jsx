@@ -33,15 +33,15 @@ const HistoryPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-7xl mx-auto p-6 pt-8 min-h-screen"
+      className="max-w-7xl mx-auto p-4 sm:p-6 pt-6 sm:pt-8 min-h-screen"
     >
-      <div className="flex flex-col md:flex-row md:items-center justify-between mb-10">
-        <div className="mb-6 md:mb-0">
-          <h1 className="text-4xl font-black text-white tracking-tight mb-2 flex items-center space-x-3">
-            <Users className="w-8 h-8 text-indigo-500" />
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 sm:mb-10 gap-4">
+        <div>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight mb-1.5 sm:mb-2 flex items-center space-x-2.5 sm:space-x-3">
+            <Users className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-500 shrink-0" />
             <span>Candidate History</span>
           </h1>
-          <p className="text-slate-400">Review past ATS analyses and placement roadmaps.</p>
+          <p className="text-slate-400 text-sm sm:text-base">Review past ATS analyses and placement roadmaps.</p>
         </div>
         <div className="relative w-full md:w-72">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
@@ -93,18 +93,18 @@ const HistoryPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ delay: idx * 0.05 }}
-                  className={`bg-white/5 backdrop-blur-xl p-6 rounded-2xl border transition-all flex flex-col h-full ${ringColor}`}
+                  className={`bg-white/5 backdrop-blur-xl p-5 sm:p-6 rounded-2xl border transition-all flex flex-col h-full ${ringColor}`}
                 >
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="font-bold text-lg text-white mb-1 truncate max-w-[200px] blur-sm select-none transition-all hover:blur-none" title={candidate.candidateName}>
+                  <div className="flex justify-between items-start mb-4 gap-2">
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-base sm:text-lg text-white mb-1 truncate max-w-[150px] sm:max-w-[200px] blur-sm select-none transition-all hover:blur-none" title={candidate.candidateName}>
                         {candidate.candidateName}
                       </h3>
-                      <p className="text-sm text-slate-400 truncate max-w-[200px] blur-sm select-none transition-all hover:blur-none" title={candidate.email}>
+                      <p className="text-xs sm:text-sm text-slate-400 truncate max-w-[150px] sm:max-w-[200px] blur-sm select-none transition-all hover:blur-none" title={candidate.email}>
                         {candidate.email}
                       </p>
                     </div>
-                    <div className={`text-2xl font-black ${scoreColor} bg-white/5 px-3 py-1 rounded-xl border border-white/5`}>
+                    <div className={`text-xl sm:text-2xl font-black ${scoreColor} bg-white/5 px-2.5 sm:px-3 py-1 rounded-xl border border-white/5 shrink-0`}>
                       {score}
                     </div>
                   </div>
